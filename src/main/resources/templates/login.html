@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<link rel="stylesheet" th:href="@{css/loginStyle.css}" />
+	<title>Login Page</title>
+	<script src="https://kit.fontawesome.com/8ced105023.js" crossorigin="anonymous"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<div th:replace="fragments/navbar.html :: navbar"></div>
+	
+	<div th:class="logIn">
+				<h1>Login</h1>
+				<br/>
+				<div th:class="loginForm">
+					<!-- Login Form -->
+					<form th:action="@{/authenticateTheUser}" 
+						  method="POST">
+					    <!-- Place for messages: error, alert etc ... -->
+					   
+					    <div>
+									<!-- Check for login error -->																	
+									<div th:if="${param.error}">
+										Invalid username or password.
+									</div>
+		
+									<!-- Check for logout -->
+									<div th:if="${param.logout}">
+										You have been logged out.
+									</div>
+					    </div>
+
+						<!-- User name -->
+						<div>						
+							<span>login: </span><input type="text" name="username" placeholder="username">
+						</div>
+
+						<!-- Password -->
+						<div>
+							<span>password: </span><input type="password" name="password" placeholder="password" class="form-control" >
+						</div>
+
+						<!-- Login/Submit Button -->					
+							<div>
+								<button type="submit" th:id="btn">Login</button>
+							</div>
+					</form>
+				</div>
+	</div>
+
+	<script src="js/login.js"></script>
+</body>
+</html>
+
+
+
+
+
+	

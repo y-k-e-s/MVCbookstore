@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}
+a {
+	text-decoration: none;
+}
+
+/* NAVBAR */
+
+.navbar{
+	position: fixed;
+	background-color: rgb(71, 182, 204); 
+	width: 100%;
+	height: 11vh;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	transition: top 1s, opacity 1s;
+	z-index: 100;
+}
+
+
+.navbar-link {
+	display: flex;
+	flex-direction: column;
+  	justify-content: center;
+  	align-items: center;
+  	transition: opacity 0.2s;
+}
+
+.navbar-link:hover {
+	opacity: 0.4;
+}
+
+.navbar-link i{
+	 font-size: 2.5rem;
+	 padding: 5%;
+	 color: #551A8B;
+}
+
+.navbar-link input{
+	border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    color: #551A8B;
+    font-size: 1em;
+}
+
+/* NAVBAR END*/
+
+.hiddenSuccessInfo{
+	visibility: hidden;
+}
+
+.successInfo{
+	position: absolute;
+	visibility: visible;
+	top: 30vh;
+	left: 30vw;
+	border-radius: 8px;
+	width: 40vw;
+  	height: 40vh;
+  	font-size: 1.5em;
+  	background-color: green;
+  	opacity: 0.8;
+}
+
+.successInfo p{
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-left: 30%
+}
+
+
+body{
+	position: relative;
+}
+
+.container{
+	position: absolute;
+	top: 15vh;
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.cart{
+	width: 34vw;
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.books{
+	display:flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.container div{
+	padding: 5px;
+	display:flex;
+	justify-content: space-between;
+}
+
+.container button{
+	height: 5vh;
+	width: 100%;
+	background-color:  rgb(71, 182, 204); 
+	border: none; 
+	transition: opacity 0.2s;
+	font-size: 1.3em;
+}
+
+.container button:hover{
+	opacity: 0.6;
+	cursor: pointer; 
+}
+
+#sum{
+	color: green;
+	font-size: 1.3em;
+}

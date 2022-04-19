@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<link rel="stylesheet" th:href="@{css/style.css}" />
+<title>Home Page</title>
+<script src="https://kit.fontawesome.com/8ced105023.js" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<!-- <div th:replace="fragments/menu :: main-menu" >main menu goes here</div> -->
+	<nav th:class="navbar" id="navbar">
+		<a th:href="@{/}" th:class="navbar-link"> <i class="fa-solid fa-house"></i>
+			<span>Home</span></a> 
+		
+			
+		<a sec:authorize="!isAuthenticated()" th:href="@{/loginPage}" th:class="navbar-link"><i class="fa-solid fa-right-to-bracket"></i>
+			<span>Login</span></a>
+		
+		<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST" th:class="navbar-link">		
+			<i class="fa-solid fa-arrow-right-from-bracket"></i>
+			<input type="submit" value="Logout"/>
+		</form>	
+
+
+		<a sec:authorize="isAuthenticated()" th:href="@{/addBook}" th:class="navbar-link"><i class="fa-solid fa-book"></i>
+		<span>Add book</span></a>
+			 
+		<a th:href="@{/register}" th:class="navbar-link"><i class="fa-solid fa-address-card"></i>
+			<span>Register</span></a> 
+		
+		<a th:href="@{/showCart}" th:class="navbar-link"><i class="fa-solid fa-cart-arrow-down"></i>
+			<span>My Cart</span></a>
+	</nav>
+
+	<div th:class="quotesContainer">
+		<p th:class="change">"In all the works on pedagogy that ever
+			I read, and they have been many, big, and heavy, I don't remember
+			that any one has advocated a system of teaching by practical jokes,
+			mostly cruel. That, however, describes the method of our great
+			teacher, Experience." ~ Charles Sanders Peirce</p>
+		<p>"It is a Time capable of destroying even becoming itself by
+			bringing forth, perhaps forever, fixity, stasis, and death." ~
+			Quentin Meillassoux</p>
+		<p>"If nothing matters, then even the thought that nothing matters
+			doesn't matter. And if it doesn't matter whether anything matters or
+			not, then there's no real difference between believing nothing
+			matters and believing something matters." ~ Ray Brassier</p>
+		<p>"Evil is the interruption of a truth by the pressure of
+			particular or individual interests." ~ Alain Badiou</p>
+		<p>"Everyone is a philosopher. Not everyone is good at it." ~
+			Alfred North Whitehead</p>
+	</div>
+
+	<div th:class="tableContainer">
+		<div th:class="book" th:each="book : ${books}">
+			<div th:class="imgDescContainer"><img th:src="@{${book.img}}" th:class="image"/><p id="desc">"In all the works on pedagogy that ever
+			I read, and they have been many, big, and heavy, I don't remember
+			that any one has advocated a system of teaching by practical jokes,
+			mostly cruel. That, however, describes the method of our great
+			teacher, Experience." ~ Charles Sanders Peirce</p></div>
+			<div th:class="bookDesc">
+
+				<span th:text="'Title: ' + ${book.title}"></span> 
+				<br/>
+				<div th:class="authorsContainer">
+					<span th:if="${book.authors.size() > 1}" th:text="'Authors: '">
+					</span> <span th:if="${book.authors.size() < 2}" th:text="'Author:'">
+					
+					</span> <span th:each="author : ${book.authors}" th:class="authors">
+						<span th:text="${author.firstName} + ' ' + ${author.secondName}"
+						th:id="'author' + ${book.authors.indexOf(author)}"></span>
+					</span>
+				</div>
+				<br/> 
+				<div>Price: 21$</div>
+				<br/> 
+				<div>Availability: in stock</div>
+				<br/>
+				<div sec:authorize="isAuthenticated()" th:class="addToCart">
+					<a th:href="@{/addToCart/(bookId=${book.getId()}, user=${session.user.getUserName()})}">
+					<i class="fa-solid fa-cart-shopping"></i>Add to cart
+					</a>
+				</div>
+				<br/>
+				<a th:href="@{/delete/(bookId=${book.getId()})}"
+				th:class="delete" sec:authorize="hasRole('ROLE_ADMIN')" ><i class="fa-solid fa-trash-can"></i>Delete</a>
+			</div>
+		</div>
+	</div>
+	
+	<div sec:authorize="isAuthenticated()">
+	Logged user: <span sec:authentication="name">Bob</span>
+	Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
+	</div>
+
+	<script src="js/script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,225 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}
+a {
+	text-decoration: none;
+}
+
+body{
+	background: white;
+}
+
+.tableContainer{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%
+}
+
+.book{
+	display: flex;
+	justify-content: space-around;
+    /* flex-wrap: no-wrap; */
+    width: 40%;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: outset;
+    border-color:  rgba(71, 182, 204, 0.4);
+    box-shadow: 0.1rem 0.1rem 0.1rem rgba(71, 182, 204, 0.4);
+}
+
+.bookDesc{
+	display: flex;
+	flex-direction: column;
+	margin: 3rem;
+}
+
+.authorsContainer{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+#box{
+	width:200px;
+	visibility: hidden;
+	opacity: 0; 
+	position: absolute; 
+	padding: 5px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	transition: opacity 0.5s;
+}
+
+
+.showAuthors{
+	position: relative;
+	cursor: pointer;
+}
+
+.showAuthors:hover #box{
+	visibility: visible;
+	opacity: 1;
+}
+
+
+.image{
+	border-radius: 8px;
+	width: 20rem;
+	height: auto;
+	box-shadow: 0.1rem 0.1rem 0.1rem #000;
+	transition: opacity 0.5s;
+	transition: box-shadow 0.2s;
+}
+
+.image:hover {
+	opacity: 0.5;
+	box-shadow: 0.3rem 0.3rem 0.3rem #000;
+	cursor: pointer;
+	filter: blur(5px);
+}
+
+#desc{
+	visibility: hidden;
+	opacity: 0;
+	position: absolute;
+	transition: opacity 2s;
+	padding: 5%;
+}
+
+.imgDescContainer:hover #desc{
+	visibility: visible;
+	opacity: 1;
+}
+
+.imgDescContainer:hover img{
+	visibility: visible;
+	opacity: 0.5;
+	filter: blur(5px);
+	box-shadow: 0.3rem 0.3rem 0.3rem #000;
+}
+
+
+.imgDescContainer{
+	position: relative;
+	display: flex;
+	flex-wrap: column;
+	justify-content: center;
+	align-items: center;
+	transition: opacity 0.5s;
+	transition: box-shadow 0.2s;
+}
+
+
+.delete{
+	color: red;
+	transition: opacity 0.2s;
+	font-size: 1.5em;
+	
+}
+.delete:hover{
+	opacity: 0.4;	
+}
+
+
+
+.navbar{
+	position: fixed;
+	background-color: rgb(71, 182, 204); 
+	width: 100%;
+	height: 11vh;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	transition: top 1s, opacity 1s;
+	z-index: 100;
+}
+
+
+.navbar-link {
+	display: flex;
+	flex-direction: column;
+  	justify-content: center;
+  	align-items: center;
+  	transition: opacity 0.2s;
+}
+
+.navbar-link:hover {
+	opacity: 0.4;
+}
+
+.navbar-link i{
+	 font-size: 2.5rem;
+	 padding: 5%;
+	 color: #551A8B;
+}
+
+.navbar-link input{
+	border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    color: #551A8B;
+    font-size: 1em;
+}
+
+.quotesContainer {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 100%;
+	height: 25vh;
+	position: relative;
+}
+
+
+.quotesContainer p{
+	position: absolute;
+	opacity: 0;
+	transition: opacity 2s;
+	visibility: hidden;
+	margin-top: 10vh;
+	font-style: italic;
+}
+
+
+.quotesContainer p.change{
+	
+	padding: 10%;
+	opacity: 1;
+	visibility: visible;
+
+}
+
+.AccessDenied{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: space-evenly;
+	padding: 40vh;
+	color: #551A8B;
+}
+
+.AccessDenied p{
+	font-size: 3em;
+	color: #551A8B;
+}
+
+.addToCart{
+	font-size: 1.5rem;
+	transition: opacity 0.2s
+}
+
+.addToCart a{
+	color: #551A8B;
+}
+
+.addToCart:hover{
+	font-size: 1.5rem;
+	opacity: 0.4;
+}

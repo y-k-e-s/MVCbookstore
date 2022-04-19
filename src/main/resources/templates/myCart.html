@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Registration Form</title>
+		<link rel="stylesheet" th:href="@{css/myCartForm.css}"/>
+		<script src="https://kit.fontawesome.com/8ced105023.js"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div th:replace="fragments/navbar.html :: navbar"></div>
+	<div th:class="container">
+	<h1>My Cart</h1>
+	<div  th:class="cart">
+	
+
+		<div th:if="${session.order} == null" th:text="'no books in cart!'"></div>
+		
+			<div th:if="${session.order} != null" th:class="books">
+			
+			<div th:each="book : ${session.order.getBooks()}" id="bookInCart"> 
+					<span th:text="${book.getTitle()} + ' ' + '| price: 21$'"></span>
+					<a th:href="@{/removeFromCart/(bookId=${book.getId()}, orderId=${session.order.getId()})}"> | remove form cart</a>
+			</div>
+			
+			<span th:if="${#lists.isEmpty(session.order.getBooks())}">no books in cart!</span>
+			<span th:unless="${#lists.isEmpty(session.order.getBooks())}" id="sum">sum</span>
+			
+			<a th:unless="${#lists.isEmpty(session.order.getBooks())}"	
+			th:href="@{/buy/(orderId=${session.order.getId()})}" th:class="button"><button>BUY!</button></a>
+			<div th:unless="${#lists.isEmpty(session.order.getBooks())}" th:class="hiddenSuccessInfo"><p>Payment success!</p></div>
+			</div>
+		</div>
+	</div>
+
+		<script src="js/myCartScript.js"></script>
+	</body>
+</html>

@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}
+a {
+	text-decoration: none;
+}
+
+.navbar{
+	position: fixed;
+	background-color: rgb(71, 182, 204); 
+	width: 100%;
+	height: 11vh;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	transition: top 1s, opacity 1s;
+	z-index: 100;
+}
+
+
+.navbar-link {
+	display: flex;
+	flex-direction: column;
+  	justify-content: center;
+  	align-items: center;
+  	transition: opacity 0.2s;
+}
+
+.navbar-link:hover {
+	opacity: 0.4;
+}
+
+.navbar-link i{
+	 font-size: 2.5rem;
+	 padding: 5%;
+	 color: #551A8B;
+}
+
+.navbar-link input{
+	border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    color: #551A8B;
+    font-size: 1em;
+}
+
+.formContainer{
+	display:flex;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 15vh;
+  	flex-direction: column;
+}
+
+.form{
+	border: solid;
+	padding: 5%;
+	border-radius: 8px;
+    border: outset;
+    border-color:  rgba(71, 182, 204, 0.4);
+    box-shadow: 0.1rem 0.1rem 0.1rem rgba(71, 182, 204, 0.4);
+}
+
+
+#btn{
+	height: 5vh;
+	width: 100%;
+	background-color:  rgb(71, 182, 204); 
+	border: none; 
+	transition: opacity 0.2s;
+	font-size: 1.3em;
+}
+
+#btn:hover{
+	opacity: 0.6;
+	cursor: pointer; 
+}
+
+.button{
+	height: 4vh;
+	width: 4vh;
+	border: none; 
+	background-color: rgb(71, 182, 204);
+	transition: opacity 0.2s;
+}
+
+.button:hover{
+	opacity: 0.6;
+	cursor: pointer; 
+}
+
+.error{
+	color: red;
+}
+
+h1{
+	color: #551A8B;
+}

@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Registration Success</title>
+		<link rel="stylesheet" th:href="@{css/registrationSuccess.css}"/>
+		<script src="https://kit.fontawesome.com/8ced105023.js"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div th:replace="fragments/navbar.html :: navbar"></div>
+	<div th:class="container">
+		<div th:class="info">
+			<div><h1>Registration Success</h1></div>
+			<div>
+				<span th:text="'user ' + ${modelUser.getUserName()} + ' created!'">Registration Success!</span>
+				<br>
+				<a th:href="@{/loginPage}">Click here to login</a>
+			</div>
+		</div>
+	</div>
+		<script src="js/registrationSuccess.js"></script>
+	</body>
+</html>

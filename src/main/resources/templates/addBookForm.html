@@ -1,0 +1,83 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+	<head>
+		<link rel="stylesheet" th:href="@{css/addBookStyle.css}"/>
+		<title>Add Book Form</title>
+		<script src="https://kit.fontawesome.com/8ced105023.js" crossorigin="anonymous"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+	</head>
+	
+	<body>
+	<nav th:class="navbar" id="navbar">
+		<a th:href="@{/}" th:class="navbar-link"> <i class="fa-solid fa-house"></i>
+			<span>Home</span></a> 
+		
+			
+		<a sec:authorize="!isAuthenticated()" th:href="@{/loginPage}" th:class="navbar-link"><i class="fa-solid fa-right-to-bracket"></i>
+			<span>Login</span></a>
+		
+		<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST" th:class="navbar-link">		
+			<i class="fa-solid fa-arrow-right-from-bracket"></i>
+			<input type="submit" value="Logout"/>
+		</form>	
+
+
+		<a sec:authorize="isAuthenticated()" th:href="@{/addBook}" th:class="navbar-link"><i class="fa-solid fa-book"></i>
+		<span>Add book</span></a>
+			 
+		<a th:href="@{/register}" th:class="navbar-link"><i class="fa-solid fa-address-card"></i>
+			<span>Register</span></a> 
+		
+		<a th:href="@{/showCart}" th:class="navbar-link"><i class="fa-solid fa-cart-arrow-down"></i>
+			<span>My Cart</span></a>
+	</nav>
+		<div th:class="formContainer">
+		<h1>Add Book</h1>
+		<div th:class="form">
+		<section>
+			<span>Select authors number: </span>
+			<input type="number" th:class="input" min="1" max="5"/>
+			<button th:class="button">OK</button>
+		</section>
+		<br/>
+		<form th:action="@{/saveBook}" method="POST" th:object="${bookModel}" >
+			<div th:class="authContainer">
+			<div th:each="int : ${bookModel.authorsNo}" th:class="authorsFields">
+					<span>First name: </span><input type="text" name="firstName" placeholder="first name" th:field="*{namesArray}"/>
+					<span th:if="${#fields.hasErrors('namesArray')}" th:errors="*{namesArray}" th:class="error">Incorrect</span>
+					<br/><br/>
+					<span>Second name: </span><input type="text" name="secondName" placeholder="second name" th:field="*{namesArray}" />
+					<span th:if="${#fields.hasErrors('namesArray')}" th:errors="*{namesArray}" th:class="error">Incorrect</span>
+					<br/><br/>
+			</div>
+			</div>
+			<br/>
+				<span>Title: </span><input type="text" id="specialinput" name="title" placeholder="title" required="required" th:field="*{title}"/>
+				<br/><br/>
+				<span>ISBN: </span><input type="text" name="isbn" placeholder="isbn" required="required" th:field="*{isbn}" />
+				<br/><br/>
+				<span>Image URL: </span><input type="text" name="img" placeholder="img" required="required" th:field="*{img}" />
+				<br/><br/>
+				<span>Select genre: </span>
+				<select id="genre" name="genre" required="required" th:field="*{genre}">
+						<option value="genre" selected="selected" disabled="disabled">genre</option>
+						<option th:each="genre : ${bookModel.getGenres()}" th:text="${genre.key}" th:value="${genre.value}" value="XXX">genre</option>
+				</select>
+				
+				<br/><br/>
+				<span>Date: </span><input type="date" name="dateOfBirth" placeholder="DOB" th:field="*{dateOfBirth}" />
+				<p th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}">Incorrect date</p>
+				<br/><br/>
+				
+				
+		<input id="btn" type="submit" value="Save new book" />
+		</form>
+		</div>
+		</div>
+	<script src="js/addBookScript.js"></script>
+	</body>
+</html>	
+		
+		
+		

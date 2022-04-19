@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<link rel="stylesheet" th:href="@{css/style.css}"/>
+		<title>Add Book Form</title>
+	</head>
+	
+	<body>
+		<h1>Add Book</h1>
+ 		<form action="" method="POST" th:object="${bookModel}" th:class="authorsNoInput">
+			<select id="authorsNo" name="authorsNo" required="required" th:field="*{aNo}">
+				<option th:each="int : ${bookModel.authorsNo}" th:text="${int}" th:value="${int}">authorsNo</option>
+			</select>
+			<input type="submit" value="select authors number"/>
+		</form>
+		
+		<form action="/saveBook" method="POST" th:object="${bookModel}" >
+
+			<div th:with="authorsNamesFields=${bookModel.aNo}" th:each="int, iterStat : ${bookModel.authorsNo}">
+				<div th:if="${authorsNamesFields ge iterStat.count}">
+					<input type="text" name="firstName" placeholder="first name" th:field="*{namesArray}"/>
+					<span th:if="${#fields.hasErrors('namesArray')}" th:errors="*{namesArray}" th:class="error">Incorrect date</span>
+					<br/><br/>
+					<input type="text" name="secondName" placeholder="second name" th:field="*{namesArray}" />
+					<span th:if="${#fields.hasErrors('namesArray')}" th:errors="*{namesArray}" th:class="error">Incorrect date</span>
+					<br/><br/>
+				</div>
+			</div>
+				
+				
+				<br/><br/>
+				<input type="text" id="specialinput" name="title" placeholder="title" required="required" th:field="*{title}"/>
+				<br/><br/>
+				<input type="text" name="isbn" placeholder="isbn" required="required" th:field="*{isbn}" />
+				<br/><br/>
+				<input type="text" name="img" placeholder="img" required="required" th:field="*{img}" />
+				<br/><br/>
+				
+				<select id="genre" name="genre" required="required" th:field="*{genre}">
+						<option value="genre" selected="selected" disabled="disabled">genre</option>
+						<option th:each="genre : ${bookModel.getGenres()}" th:text="${genre.key}" th:value="${genre.value}" value="XXX">genre</option>
+				</select>
+				
+				<br/><br/>
+				<input type="date" name="dateOfBirth" placeholder="DOB" th:field="*{dateOfBirth}" />
+				<p th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}">Incorrect date</p>
+				<br/><br/>
+				
+				
+		<input type="submit" value="Save new book" />
+		</form>
+		
+	<script src="js/addBookScript.js"></script>
+	</body>
+</html>	
+		
+		
+		

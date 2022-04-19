@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<link rel="stylesheet" th:href="@{css/style.css}" />
+	<title>Access Denied</title>
+	<script src="https://kit.fontawesome.com/8ced105023.js" crossorigin="anonymous"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<!-- <div th:replace="fragments/menu :: main-menu" >main menu goes here</div> -->
+	<nav th:class="navbar" id="navbar">
+		<a th:href="@{/}" th:class="navbar-link"> <i class="fa-solid fa-house"></i>
+			<span>Home</span></a> 
+		
+			
+		<a sec:authorize="!isAuthenticated()" th:href="@{/loginPage}" th:class="navbar-link"><i class="fa-solid fa-right-to-bracket"></i>
+			<span>Login</span></a>
+		
+		<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST" th:class="navbar-link">		
+			<i class="fa-solid fa-arrow-right-from-bracket"></i>
+			<input type="submit" value="Logout"/>
+		</form>	
+
+
+		<a sec:authorize="isAuthenticated()" th:href="@{/addBook}" th:class="navbar-link"><i class="fa-solid fa-book"></i>
+		<span>Add book</span></a>
+			 
+		<a th:href="@{/register}" th:class="navbar-link"><i class="fa-solid fa-address-card"></i>
+			<span>Register</span></a> 
+		
+		<a th:href="@{/showCart}" th:class="navbar-link"><i class="fa-solid fa-cart-arrow-down"></i>
+			<span>My Cart</span></a>
+	</nav>
+	<div th:class="AccessDenied">
+		<p>Access Denied!</p>
+		<br>
+		<span>User <span sec:authentication="name"></span> is not authorized to access this page.</span>
+	</div>
+	<script src="js/addBookScript.js"></script>
+</body>
+</html>
