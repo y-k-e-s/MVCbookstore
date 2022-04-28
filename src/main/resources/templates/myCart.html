@@ -8,10 +8,12 @@
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
 	</head>
 	<body>
+		<script src="js/navbar.js"></script>
 		<div th:replace="fragments/navbar.html :: navbar"></div>
-	<div th:class="container">
-	<h1>My Cart</h1>
-	<div  th:class="cart">
+		
+		<div th:class="container">
+		<h1>My Cart</h1>
+		<div  th:class="cart">
 	
 
 		<div th:if="${session.order} == null" th:text="'no books in cart!'"></div>

@@ -21,7 +21,6 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Override
-	@Transactional
 	public Order findOrderById(int orderId) {
 		return orderDao.findOrderById(orderId);
 	}

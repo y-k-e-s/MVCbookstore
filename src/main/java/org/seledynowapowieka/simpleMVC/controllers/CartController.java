@@ -86,7 +86,7 @@ public class CartController {
 		orderService.saveOrder(order);
 		session.setAttribute("order", order);
 		
-		return "myCart";
+		return "redirect:/showCart";
 	}
 	
 	@RequestMapping("/buy")

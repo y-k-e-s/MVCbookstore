@@ -11,7 +11,8 @@
 
 <body>
 	<!-- <div th:replace="fragments/menu :: main-menu" >main menu goes here</div> -->
-	<nav th:class="navbar" id="navbar">
+	<script src="js/navbar.js"></script>
+	<div th:replace="fragments/navbar.html :: navbar"></div>
 		<a th:href="@{/}" th:class="navbar-link"> <i class="fa-solid fa-house"></i>
 			<span>Home</span></a> 
 		

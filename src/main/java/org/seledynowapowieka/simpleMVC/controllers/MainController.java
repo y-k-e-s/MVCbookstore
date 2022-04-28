@@ -3,23 +3,16 @@ package org.seledynowapowieka.simpleMVC.controllers;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.seledynowapowieka.simpleMVC.entities.Book;
 import org.seledynowapowieka.simpleMVC.entities.BookModel;
-import org.seledynowapowieka.simpleMVC.entities.Order;
-import org.seledynowapowieka.simpleMVC.entities.User;
 import org.seledynowapowieka.simpleMVC.service.BookService;
 import org.seledynowapowieka.simpleMVC.service.OrderService;
 import org.seledynowapowieka.simpleMVC.service.UserService;
-import org.seledynowapowieka.simpleMVC.util.Counter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,7 +41,6 @@ public class MainController {
 		
 		List<Book> books = bookService.findAll();
 		ModelAndView model = new ModelAndView("homepage", "books", books);
-		model.addObject("counter", new Counter());
 
 		return model;
 	}

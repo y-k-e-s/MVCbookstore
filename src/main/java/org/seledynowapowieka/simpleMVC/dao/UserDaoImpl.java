@@ -1,7 +1,10 @@
 package org.seledynowapowieka.simpleMVC.dao;
 
+import java.util.Optional;
+
 import javax.persistence.EntityManager;
 
+import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.seledynowapowieka.simpleMVC.entities.User;
@@ -19,16 +22,17 @@ public class UserDaoImpl implements UserDao {
 		// get the current hibernate session
 		Session currentSession = entityManager.unwrap(Session.class);
 
-		// now retrieve/read from database using username
+		// retrieve/read from database using username
 		Query<User> theQuery = currentSession.createQuery("from User where userName=:uName", User.class);
 		theQuery.setParameter("uName", theUserName);
 		User theUser = null;
-		try {
-			theUser = theQuery.getSingleResult();
-		} catch (Exception e) {
-			theUser = null;
+		
+		Optional<User> user = theQuery.getResultStream().findAny();
+		
+		if(user.isPresent()) {
+			theUser = user.get();
 		}
-
+		
 		return theUser;
 	}
 
@@ -37,7 +41,7 @@ public class UserDaoImpl implements UserDao {
 		// get current hibernate session
 		Session currentSession = entityManager.unwrap(Session.class);
 
-		// create the user ... finally LOL
+		// create the user 
 		currentSession.saveOrUpdate(theUser);
 	}
 

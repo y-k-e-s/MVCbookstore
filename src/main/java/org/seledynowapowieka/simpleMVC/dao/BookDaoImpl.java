@@ -3,10 +3,8 @@ package org.seledynowapowieka.simpleMVC.dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.seledynowapowieka.simpleMVC.constants.Genre;
 import org.seledynowapowieka.simpleMVC.entities.Author;
@@ -29,7 +27,6 @@ public class BookDaoImpl implements BookDao {
 		System.out.println("inside BookDaoImpl constructor");
 	}
 	
-	@Transactional
 	@Override
 	public List<Book> findAll() {
 		Session session = entityManager.unwrap(Session.class);
@@ -41,7 +38,6 @@ public class BookDaoImpl implements BookDao {
 		return books;
 	}
 	
-	@Transactional
 	@Override
 	public Book findById(int id) {
 		Session session = entityManager.unwrap(Session.class);
@@ -95,7 +91,7 @@ public class BookDaoImpl implements BookDao {
 				book.addAuthor(author);
 			}
 		}
-		/// to consider - will adding genre option be available for user?
+		/// to consider - adding genre option available for user?
 		
 		Query<Genre> genreQuery = session.createQuery("from Genre", Genre.class);
 		List<Genre> genres = genreQuery.getResultList();
@@ -129,7 +125,6 @@ public class BookDaoImpl implements BookDao {
 		session.update(book);
 	}
 	
-	@Transactional
 	@Override
 	public List<Author> getAuthors() {
 		Session session = entityManager.unwrap(Session.class);

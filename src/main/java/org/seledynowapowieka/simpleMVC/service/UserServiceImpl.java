@@ -41,7 +41,6 @@ public class UserServiceImpl implements UserService{
 
 
 	@Override
-	@Transactional
 	public User findByUserName(String userName) {
 		// TODO Auto-generated method stub
 		return userDao.findByUserName(userName);

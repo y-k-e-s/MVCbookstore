@@ -26,14 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.authenticationProvider(authenticationProvider());
 	}
 
-	/*
-	 * UserBuilder users = User.withDefaultPasswordEncoder();
-	 * 
-	 * auth.inMemoryAuthentication().withUser(users.username("john").password(
-	 * "test123").roles("EMPLOYEE"))
-	 * .withUser(users.username("mary").password("test123").roles("EMPLOYEE"))
-	 * .withUser(users.username("susan").password("test123").roles("ADMIN")); }
-	 */
 
 	@Override protected void configure(HttpSecurity http) throws Exception {
 	  

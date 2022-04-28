@@ -9,29 +9,8 @@
 	</head>
 	
 	<body>
-	<nav th:class="navbar" id="navbar">
-		<a th:href="@{/}" th:class="navbar-link"> <i class="fa-solid fa-house"></i>
-			<span>Home</span></a> 
-		
-			
-		<a sec:authorize="!isAuthenticated()" th:href="@{/loginPage}" th:class="navbar-link"><i class="fa-solid fa-right-to-bracket"></i>
-			<span>Login</span></a>
-		
-		<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST" th:class="navbar-link">		
-			<i class="fa-solid fa-arrow-right-from-bracket"></i>
-			<input type="submit" value="Logout"/>
-		</form>	
-
-
-		<a sec:authorize="isAuthenticated()" th:href="@{/addBook}" th:class="navbar-link"><i class="fa-solid fa-book"></i>
-		<span>Add book</span></a>
-			 
-		<a th:href="@{/register}" th:class="navbar-link"><i class="fa-solid fa-address-card"></i>
-			<span>Register</span></a> 
-		
-		<a th:href="@{/showCart}" th:class="navbar-link"><i class="fa-solid fa-cart-arrow-down"></i>
-			<span>My Cart</span></a>
-	</nav>
+		<script src="js/navbar.js"></script>
+		<div th:replace="fragments/navbar.html :: navbar"></div>
 		<div th:class="formContainer">
 		<h1>Add Book</h1>
 		<div th:class="form">

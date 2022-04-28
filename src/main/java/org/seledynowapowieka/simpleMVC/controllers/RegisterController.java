@@ -45,8 +45,8 @@ public class RegisterController {
 	public String processRegistration(@Valid @ModelAttribute("modelUser") ModelUser modelUser, 
 			BindingResult br, Model theModel) {
 		
-		setInstance(this);
-		setUserModel(modelUser);
+		//setInstance(this);
+		//setUserModel(modelUser);
 		
 		
 		if(br.hasErrors()) {
@@ -62,7 +62,7 @@ public class RegisterController {
 			return "registrationForm";
 		}
 		
-		//create method for checking email address: userService.findByUserEmail("")
+		//TO DO - create method for checking email address: userService.findByUserEmail("")
 		
 		
 		userService.save(modelUser);
